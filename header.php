@@ -1,12 +1,12 @@
 <?php
 if (isset($_POST['logout'])) {
-    
+
     $_SESSION = array();
 
 
     session_destroy();
 
-    
+
     header("Location: login.php");
     exit;
 }
@@ -15,8 +15,8 @@ if (isset($_POST['logout'])) {
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Bootstrap
+            <img src="./" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Safeer Academy
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@ if (isset($_POST['logout'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
+                    <a class="nav-link" aria-current="page" href="./index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <?php
@@ -41,7 +41,7 @@ if (isset($_POST['logout'])) {
                         About
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">About Safeer Academy</a></li>
+                        <li><a class="dropdown-item" href="./about_page.php">About Safeer Academy</a></li>
                         <li><a class="dropdown-item" href="#">Chairman Message</a></li>
                         <li><a class="dropdown-item" href="#">Secratary Message</a></li>
                         <li><a class="dropdown-item" href="#">Principle Message</a></li>

@@ -9,6 +9,37 @@ if (isset($_SESSION['email'])) {
     session_abort();
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $notice = $_POST['notice'];
+    $gdrive = $_POST['gdrive'];
+    // echo $notice;
+    // echo $gdrive;
+    try {
+
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        // echo $email;
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+        $stmt = $pdo->prepare("INSERT INTO notice (notice, gdrive) VALUES (:dbnotice, :dbgdrive)");
+        $stmt->bindParam(':dbnotice', $notice);
+        $stmt->bindParam(':dbgdrive', $gdrive);
+
+
+
+
+        $success = $stmt->execute();
+
+
+        if ($success) {
+            $msg = "Notice sucessfully inserted.";
+        } else {
+            $msg = "Insertion unsuccessfull.";
+        }
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +47,7 @@ if (isset($_SESSION['email'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Admin | Student</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./extra/css/dataTables.bootstrap5.css">
@@ -33,7 +64,6 @@ if (isset($_SESSION['email'])) {
                                     ?></h2>
 
 
-
     <section>
         <div class="text-center">
             <a href="./admin_notice.php" class="btn mx-3 btn-primary ">Notice</a>
@@ -42,6 +72,17 @@ if (isset($_SESSION['email'])) {
 
         </div>
     </section>
+    <section class=" my-4">
+
+        <div class="text-center">
+            <a href="./admin_add_student.php" class="btn btn-success mx-3">Add Students</a>
+            <a href="./admin_modify_student.php" class="btn btn-success mx-3">Modify Students</a>
+        </div>
+    </section>
+
+
+
+
 
 
 
